@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - 'license.md'
-  workflow_dispatch:
 
 jobs:
   translate:
@@ -36,14 +35,14 @@ jobs:
       run: |
         git checkout -b update-translations
 
+    - name: Set up tracking for new branch
+      run: |
+        git push --set-upstream origin update-translations
+
     - name: Commit translations
       run: |
         git add licenses/
         git commit -m "Automation: Update translated license files"
-        
-    - name: Pull Repository
-      run: |
-        git pull
 
     - name: Push branch
       run: |
@@ -54,5 +53,5 @@ jobs:
       with:
         title: 'Automation: Update Translations'
         body: 'This PR updates the translated license files. Please review and merge.'
-        base: main  # A base branch para a qual você está criando o PR
-        branch: update-translations
+        base: main  # Branch de destino do PR
+        branch: update-translations  # Branch que foi criada e contém as mudanças
