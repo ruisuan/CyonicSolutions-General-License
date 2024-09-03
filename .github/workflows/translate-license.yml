@@ -31,27 +31,24 @@ jobs:
         git config --global user.name 'GitHub Actions'
         git config --global user.email 'actions@github.com'
 
-    - name: Create a new branch
+    - name: Create or Checkout Branch
       run: |
-        git checkout -b update-translations
-
-    - name: Set up tracking for new branch
-      run: |
-        git push --set-upstream origin update-translations
+        git fetch origin
+        git checkout -B update-translations origin/update-translations || git checkout -b update-translations
 
     - name: Commit translations
       run: |
         git add licenses/
-        git commit -m "Automation: Update translated license files"
+        git commit -m "Automation: Update translated license files" || echo "No changes to commit"
 
     - name: Push branch
       run: |
-        git push origin update-translations
+        git push --set-upstream origin update-translations
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v4
       with:
         title: 'Automation: Update Translations'
         body: 'This PR updates the translated license files. Please review and merge.'
-        base: main  # Branch de destino do PR
-        branch: update-translations  # Branch que foi criada e contém as mudanças
+        base: main  # A base branch para a qual você está criando o PR
+        branch: update-translations
