@@ -39,6 +39,10 @@ jobs:
       run: |
         git add licenses/
         git commit -m "Automation: Update translated license files"
+        
+    - name: Pull Repository
+      run: |
+        git pull
 
     - name: Push branch
       run: |
