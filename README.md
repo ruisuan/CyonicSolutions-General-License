@@ -1,6 +1,7 @@
 # CyonicSolutions General License Translations
 
-Search for your language below:| Language | Link |
+Search for your language below:
+| Language | Link |
 |----------|------|
 | Maltese | [Maltese (mt)](licenses/mt.md) |
 | Mongolian | [Mongolian (mn)](licenses/mn.md) |
