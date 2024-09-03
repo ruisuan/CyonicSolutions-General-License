@@ -95,7 +95,7 @@ def update_readme_table(licenses_dir, readme_path):
     """Atualiza o README.md com uma tabela de links para os arquivos traduzidos."""
     table_header = (
         "# CyonicSolutions General License Translations\n\n"
-        "Search for your language below:"
+        "Search for your language below:\n"
         "| Language | Link |\n"
         "|----------|------|\n"
     )
