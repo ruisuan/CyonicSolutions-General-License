@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'license.md'
+  workflow_dispatch:
 
 jobs:
   translate:
