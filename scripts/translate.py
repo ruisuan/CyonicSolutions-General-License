@@ -55,7 +55,7 @@ def append_disclaimer(text):
         "\n\n---\n"
         "Disclaimer: This translation was generated automatically and may not be completely accurate."
         " The official version of the license is the English version available on the GitHub repository: "
-        "https://github.com/cyonicsolutions/license/license.md. Please refer to the original version for the valid license."
+        "https://github.com/ruisuan/CyonicSolutions-General-License/blob/main/license.md. Please refer to the original version for the valid license."
     )
     return text + disclaimer
 
