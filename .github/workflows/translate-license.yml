@@ -1,0 +1,53 @@
+name: Translate License
+
+on:
+  push:
+    paths:
+      - 'license.md'
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install googletrans==4.0.0-rc1
+
+    - name: Run translation script
+      run: python ./scripts/translate.py
+
+    - name: Configure Git
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+
+    - name: Create a new branch
+      run: |
+        git checkout -b update-translations
+
+    - name: Commit translations
+      run: |
+        git add licenses/
+        git commit -m "Automation: Update translated license files"
+
+    - name: Push branch
+      run: |
+        git push origin update-translations
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v4
+      with:
+        title: 'Automation: Update Translations'
+        body: 'This PR updates the translated license files. Please review and merge.'
+        base: main  # A base branch para a qual você está criando o PR
+        branch: update-translations
